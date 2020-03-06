@@ -39,22 +39,26 @@ public class Main {
 
         //Найти слово с максимальным количеством повторений. Вывести на консоль это слово и сколько раз оно встречается в файле
 
-        System.out.println("Чаще всего встречается слово " + "\"" + wordCount
+        System.out.println("Чаще всего встречается слово " + "\"" + getKey(wordCount) + "\", " + getValue(wordCount) + " раз");
+
+
+    }
+
+    public static String getKey(Map<String, Long> wordCount) {
+        return wordCount.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue()
+                        .equals(findMaxValue(wordCount)))
+                .findFirst().get().getKey();
+    }
+
+    public static Long getValue(Map<String, Long> wordCount) {
+        return wordCount
                 .entrySet()
                 .stream()
                 .filter(entry -> entry.getValue()
                         .equals(findMaxValue(wordCount)))
-                .findFirst().get().getKey()
-                + "\", "
-                + wordCount
-                .entrySet()
-                .stream()
-                .filter(entry -> entry.getValue()
-                        .equals(findMaxValue(wordCount)))
-                .findFirst().get().getValue()
-                + " раз");
-
-
+                .findFirst().get().getValue();
     }
 
     public static <K, V extends Comparable<V>> V findMaxValue(Map<K, V> map) {
