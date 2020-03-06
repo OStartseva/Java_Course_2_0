@@ -35,7 +35,11 @@ public class CalculatorImpl implements Calculator{
             case "*":
                 return first * second;
             case "/":
-                return first / second;
+                try {
+                    return first / second;
+                } catch (Exception e){
+                    System.out.println("Деление на 0");
+                }
             case "+":
                 return first + second;
             default:
