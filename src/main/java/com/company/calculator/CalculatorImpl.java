@@ -3,22 +3,43 @@ package com.company.calculator;
 
 import java.util.*;
 
-public class CalculatorImpl implements Calculator{
+public class CalculatorImpl implements Calculator {
 
     public void calculator() {
         Scanner scanner1 = new Scanner(System.in);
 
         System.out.println("Введи первое дробное число: ");
-        double first = scanner1.nextDouble();
+        double first = 0;
+        double second = 0;
+        try {
+             first = scanner1.nextDouble();
+        } catch (Exception e){
+            System.out.println("Неправильно введено число. Работа программы завершается");
+            System.exit(1);
+        }
 
         System.out.println("Арифметическая операция: ");
         Scanner scanner2 = new Scanner(System.in);
-        String operator = scanner2.nextLine();
+
+        String operator = null;
+        try {
+            operator = scanner2.nextLine();
+            if (!operator.equals("-") || !operator.equals("+") || !operator.equals("*")|| !operator.equals("/")){
+                throw new Exception("Исключение в catch");
+            }
+        } catch (Exception e){
+            System.out.println("Неправильно введен оператор. Работа программы завершается");
+            System.exit(1);
+        }
 
         //Присваиваем переменной второе введенное значение
         System.out.println("Введи второе дробное число: ");
-        double second = scanner1.nextDouble();
-
+        try {
+            second = scanner1.nextDouble();
+        } catch (Exception e){
+            System.out.println("Неправильно введено число. Работа программы завершается");
+            System.exit(1);
+        }
 
         System.out.printf("%.4f", calculate(first, second, operator));
     }
@@ -35,16 +56,13 @@ public class CalculatorImpl implements Calculator{
             case "*":
                 return first * second;
             case "/":
-                try {
-                    return first / second;
-                } catch (Exception e){
-                    System.out.println("Деление на 0");
-                }
+                return first / second;
             case "+":
                 return first + second;
             default:
                 return first - second;
         }
+
     }
 
     public void findLongestWord() {

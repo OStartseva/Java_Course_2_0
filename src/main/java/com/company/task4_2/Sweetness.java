@@ -4,7 +4,13 @@ public class Sweetness {
     private String name;
     private double weight;
     private int price;
-    private String uniqParam;
+
+
+    public Sweetness(String name, double weight, int price) {
+        this.name = name;
+        this.weight = weight;
+        this.price = price;
+    }
 
     public String getName() {
         return name;
@@ -30,7 +36,4 @@ public class Sweetness {
         this.price = price;
     }
 
-    public String getUniqParam() {
-        return uniqParam;
-    }
 }
